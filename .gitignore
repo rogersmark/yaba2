@@ -1,1 +1,3 @@
 *.pyc
+*.swp
+yaba2.egg-info/
