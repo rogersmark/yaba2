@@ -9,6 +9,8 @@ except ImportError:
 
 
 install_requires = [
+    'django-taggit'
+    'django-markdown',
 ]
 
 setup(
