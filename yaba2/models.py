@@ -1,7 +1,9 @@
 ''' yaba2 models '''
 from django.db import models
 
-class YabaBase(models.Model):
+from taggit.managers import TaggableManager
+
+class YabaBaseModel(models.Model):
     ''' Base model, provides standard fields that all yaba2 models will need
     '''
 
@@ -11,7 +13,7 @@ class YabaBase(models.Model):
     class Meta:
         abstract = True
 
-class Link(models.Model):
+class Link(YabaBaseModel):
     ''' Links to other sites to put in the sidebar and what not '''
 
     label = models.CharField(max_length=100)
@@ -20,3 +22,31 @@ class Link(models.Model):
     def __unicode__(self):
         return u'%s' % self.label
 
+class Story(YabaBaseModel):
+    ''' Story model to hold blog posts and articles '''
+
+    DRAFT = 1
+    PUBLISHED = 2
+    ARCHIVED = 3
+
+    STATUS_CHOICES = (
+        (PUBLISHED, 'Published'),
+        (DRAFT, 'Draft'),
+        (ARCHIVED, 'Archived')
+    )
+
+    author = models.ForeignKey('auth.user')
+    title = models.CharField(max_length=128)
+    slug = models.SlugField()
+    post = models.TextField()
+    status = models.IntegerField(choices=STATUS_CHOICES, default=1)
+    enable_comments = models.BooleanField()
+
+    tags = TaggableManager()
+
+    def __unicode__(self):
+        return u'%s by %s' % (self.title, self.author.username)
+
+    class Meta:
+        ordering = ['-created']
+        verbose_name_plural = 'stories'
