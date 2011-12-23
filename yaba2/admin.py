@@ -2,7 +2,7 @@ from django.contrib import admin
 
 from django_markdown.admin import MarkdownModelAdmin
 
-from . import models
+from yaba2 import models
 
 class StoryAdmin(MarkdownModelAdmin):
     ''' Admin adjustments for models.Story '''

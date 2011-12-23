@@ -22,6 +22,21 @@ class Link(YabaBaseModel):
     def __unicode__(self):
         return u'%s' % self.label
 
+class StoryManager(models.Manager):
+    ''' Helper functions for the Story model '''
+
+    @property
+    def published_stories(self):
+        return self.filter(status=self.model.PUBLISHED)
+
+    @property
+    def drafts(self):
+        return self.filter(status=self.model.DRAFT)
+
+    @property
+    def archived_stories(self):
+        return self.filter(status=self.model.ARCHIVED)
+
 class Story(YabaBaseModel):
     ''' Story model to hold blog posts and articles '''
 
@@ -41,8 +56,9 @@ class Story(YabaBaseModel):
     post = models.TextField()
     status = models.IntegerField(choices=STATUS_CHOICES, default=1)
     enable_comments = models.BooleanField()
-
     tags = TaggableManager()
+
+    objects = StoryManager()
 
     def __unicode__(self):
         return u'%s by %s' % (self.title, self.author.username)
