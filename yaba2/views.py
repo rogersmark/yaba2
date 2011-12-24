@@ -11,7 +11,7 @@ class StoryListView(ListView):
     ''' Generic ListView to handle stories properly '''
 
     paginate = True
-    paginate_by = 1
+    paginate_by = 2
     context_object_name = 'story_list'
     template_name = 'yaba2/story_list.html'
 

@@ -5,13 +5,35 @@
 {% endblock %}
 {% block content %}
     {% for story in story_list %}
-        <div class="page-header">
-            <h1>{{ story.title }}</h1>
-        </div>
         <div class="row">
-            <div class="span10">
-                {{ story.post|safe }}
-            </div>
+          <div class="span11">
+              <h2>{{ story.title }}</h2>
+              <p>{{ story.post|safe|truncatewords:100 }}</p>
+
+            <p><a class="btn" href="#">View details &raquo;</a></p>
+            <p><small>Author: {{ story.author.username }}</small><br />
+            <small>Written: {{ story.created }}</small></p>
+          </div>
         </div>
+        {% if not forloop.last %}
+            <hr>
+        {% endif %}
     {% endfor %}
+    <hr>
+    <div class="row">
+        <span class="span4">
+            {% if page_obj.has_previous %}
+                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+            </span>
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">next</a>
+            {% endif %}
+        </span>
+    </div>
+
 {% endblock %}
