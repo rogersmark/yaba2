@@ -60,6 +60,10 @@ class Story(YabaBaseModel):
 
     objects = StoryManager()
 
+    @models.permalink
+    def get_absolute_url(self):
+        return ('story-detail', (), {'slug': self.slug})
+
     def __unicode__(self):
         return u'%s by %s' % (self.title, self.author.username)
 

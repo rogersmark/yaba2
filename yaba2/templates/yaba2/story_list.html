@@ -10,7 +10,7 @@
               <h2>{{ story.title }}</h2>
               <p>{{ story.post|safe|truncatewords:100 }}</p>
 
-            <p><a class="btn" href="#">View details &raquo;</a></p>
+              <p><a class="btn" href="{{ story.get_absolute_url }}">View details &raquo;</a></p>
             <p><small>Author: {{ story.author.username }}</small><br />
             <small>Written: {{ story.created }}</small></p>
           </div>

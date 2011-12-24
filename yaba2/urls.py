@@ -13,7 +13,8 @@ urlpatterns = patterns('',
     ),
     url(r'^post/(?P<slug>[\w_-]+)/$', DetailView.as_view(
         model=models.Story,
-        context_object_name='story')
+        context_object_name='story'),
+        name='story-detail'
     ),
 )
 
