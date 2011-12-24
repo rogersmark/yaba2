@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import DetailView, ListView
+from django.views.generic import ListView
 
 from yaba2 import models
 
