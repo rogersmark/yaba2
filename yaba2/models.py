@@ -18,9 +18,13 @@ class Link(YabaBaseModel):
 
     label = models.CharField(max_length=100)
     url = models.CharField(max_length=256)
+    sort_order = models.IntegerField()
 
     def __unicode__(self):
         return u'%s' % self.label
+
+    class Meta:
+        ordering = ['sort_order']
 
 class StoryManager(models.Manager):
     ''' Helper functions for the Story model '''
