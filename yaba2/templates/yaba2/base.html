@@ -50,11 +50,9 @@
         <div class="well">
           <h5>Sidebar</h5>
           <ul>
-
-            <li><a href="#">Link</a></li>
-            <li><a href="#">Link</a></li>
-            <li><a href="#">Link</a></li>
-            <li><a href="#">Link</a></li>
+            {% for link in links %}
+                <li><a href="{{ link.url }}">{{ link.label }}</a></li>
+            {% endfor %}
           </ul>
 
         </div>
