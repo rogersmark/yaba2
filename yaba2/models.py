@@ -31,14 +31,17 @@ class StoryManager(models.Manager):
 
     @property
     def published_stories(self):
+        ''' Returns queryset of published stories '''
         return self.filter(status=self.model.PUBLISHED)
 
     @property
     def drafts(self):
+        ''' Returns queryset of stories in draft status '''
         return self.filter(status=self.model.DRAFT)
 
     @property
     def archived_stories(self):
+        ''' Returns queryset of archived stories '''
         return self.filter(status=self.model.ARCHIVED)
 
 class Story(YabaBaseModel):
