@@ -32,17 +32,26 @@ class StoryManager(models.Manager):
     @property
     def published_stories(self):
         ''' Returns queryset of published stories '''
-        return self.filter(status=self.model.PUBLISHED)
+        return self.filter(
+                status=self.model.PUBLISHED,
+                story_type=self.model.NEWS
+        )
 
     @property
     def drafts(self):
         ''' Returns queryset of stories in draft status '''
-        return self.filter(status=self.model.DRAFT)
+        return self.filter(
+                status=self.model.DRAFT,
+                story_type=self.model.NEWS
+        )
 
     @property
     def archived_stories(self):
         ''' Returns queryset of archived stories '''
-        return self.filter(status=self.model.ARCHIVED)
+        return self.filter(
+                status=self.model.ARCHIVED,
+                story_type=self.model.NEWS
+        )
 
 class Story(YabaBaseModel):
     ''' Story model to hold blog posts and articles '''
@@ -57,11 +66,20 @@ class Story(YabaBaseModel):
         (ARCHIVED, 'Archived')
     )
 
+    NEWS = 1
+    PAGE = 2
+
+    STORY_TYPES = (
+        (NEWS, 'News'),
+        (PAGE, 'Page'),
+    )
+
     author = models.ForeignKey('auth.user')
     title = models.CharField(max_length=128)
     slug = models.SlugField()
     post = models.TextField()
     status = models.IntegerField(choices=STATUS_CHOICES, default=1)
+    story_type = models.IntegerField(choices=STORY_TYPES, default=1)
     enable_comments = models.BooleanField()
     tags = TaggableManager()
 
