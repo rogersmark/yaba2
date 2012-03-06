@@ -3,12 +3,17 @@
 {% block title %}{{ story.title }}{% endblock %}
 {% block content %}
     <div class="row">
-      <div class="span11">
-          <h2>{{ story.title }}</h2>
-          <p>{{ story.post|markdown }}</p>
+        <div class="span11">
+        <h2>{{ story.title }}</h2>
+            <p>{{ story.post|markdown }}</p>
 
-        <p><small>Author: {{ story.author.username }}</small><br />
-        <small>Written: {{ story.created }}</small></p>
+            <p>
+                <small>
+                    Author: {{ story.author.username }}<br />
+                    Written: {{ story.created }}<br />
+                    Tags: {% for tag in story.tags.all %}<a href="{% url tag-stories tag.name %}">{{ tag.name }}</a>{% if not forloop.last %}, {% endif %}{% endfor %}
+                </small>
+            </p>
       </div>
     </div>
 {% endblock %}

@@ -7,15 +7,19 @@
 {% block content %}
     {% for story in story_list %}
         <div class="row">
-          <div class="span11">
-              <h2>{{ story.title }}</h2>
-              <p>{{ story.post|safe|truncatewords:100 }}</p>
+            <div class="span11">
+                <h2>{{ story.title }}</h2>
+                <p>{{ story.post|safe|truncatewords:100 }}</p>
 
-              <p><a class="btn" href="{{ story.get_absolute_url }}">View details &raquo;</a></p>
-            <p><small>Author: {{ story.author.username }}<br />
-            Written: {{ story.created }}<br />
-            Tags: {% for tag in story.tags.all %}<a href="{% url tag-stories tag.name %}">{{ tag.name }}</a>{% if not forloop.last %}, {% endif %}{% endfor %}</small></p>
-          </div>
+                <p><a class="btn" href="{{ story.get_absolute_url }}">View details &raquo;</a></p>
+                <p>
+                    <small>
+                        Author: {{ story.author.username }}<br />
+                        Written: {{ story.created }}<br />
+                        Tags: {% for tag in story.tags.all %}<a href="{% url tag-stories tag.name %}">{{ tag.name }}</a>{% if not forloop.last %}, {% endif %}{% endfor %}
+                    </small>
+                </p>
+            </div>
         </div>
         {% if not forloop.last %}
             <hr>
