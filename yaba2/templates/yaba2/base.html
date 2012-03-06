@@ -36,8 +36,8 @@
 
           <ul class="nav">
               <li class="active"><a href="{% url index %}">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="/about/">About</a></li>
+            <li><a href="/contact/">Contact</a></li>
           </ul>
 
         </div>
@@ -60,7 +60,7 @@
         {% block content %}{% endblock %}
 
         <footer>
-          <p>&copy; f4ntasmic studios 2011</p>
+        <p>&copy; f4ntasmic studios {% now "Y" %}</p>
 
         </footer>
       </div>

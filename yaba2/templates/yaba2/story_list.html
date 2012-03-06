@@ -11,8 +11,9 @@
               <p>{{ story.post|safe|truncatewords:100 }}</p>
 
               <p><a class="btn" href="{{ story.get_absolute_url }}">View details &raquo;</a></p>
-            <p><small>Author: {{ story.author.username }}</small><br />
-            <small>Written: {{ story.created }}</small></p>
+            <p><small>Author: {{ story.author.username }}<br />
+            Written: {{ story.created }}<br />
+            Tags: {% for tag in story.tags.all %}<a href="{% url tag-stories tag.name %}">{{ tag.name }}</a>{% if not forloop.last %}, {% endif %}{% endfor %}</small></p>
           </div>
         </div>
         {% if not forloop.last %}
