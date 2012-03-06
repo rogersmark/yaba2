@@ -1,0 +1,32 @@
+[
+    {
+        "pk": 7, 
+        "model": "yaba2.story", 
+        "fields": {
+            "status": 2, 
+            "story_type": 2, 
+            "title": "Contact", 
+            "author": 1, 
+            "modified": "2012-03-05 19:38:55", 
+            "created": "2012-03-05 19:38:55", 
+            "enable_comments": false, 
+            "post": "Contact Info", 
+            "slug": "contact"
+        }
+    }, 
+    {
+        "pk": 6, 
+        "model": "yaba2.story", 
+        "fields": {
+            "status": 2, 
+            "story_type": 2, 
+            "title": "About Me", 
+            "author": 1, 
+            "modified": "2012-03-05 19:38:32", 
+            "created": "2012-03-05 19:24:48", 
+            "enable_comments": false, 
+            "post": "About", 
+            "slug": "about"
+        }
+    }
+]
