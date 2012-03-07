@@ -9,9 +9,9 @@
         <div class="row">
             <div class="span11">
                 <h2>{{ story.title }}</h2>
-                <p>{{ story.post|safe|truncatewords:100 }}</p>
+                <p>{{ story.post|markdown|truncatewords:100 }}</p>
 
-                <p><a class="btn" href="{{ story.get_absolute_url }}">View details &raquo;</a></p>
+                <p><a class="btn" href="{{ story.get_absolute_url }}">Continue &raquo;</a></p>
                 <p>
                     <small>
                         Author: {{ story.author.username }}<br />

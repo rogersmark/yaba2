@@ -4,6 +4,13 @@ from django_markdown.admin import MarkdownModelAdmin
 
 from yaba2 import models
 
+
+class LinkInline(admin.TabularInline):
+    model = models.Link
+
+class LinkGroupAdmin(admin.ModelAdmin):
+    inlines = [LinkInline,]
+
 class StoryAdmin(MarkdownModelAdmin):
     ''' Admin adjustments for models.Story '''
     list_display = ('title', 'author', 'status', 'created', 'modified', 'story_type')
@@ -12,4 +19,5 @@ class StoryAdmin(MarkdownModelAdmin):
     prepopulated_fields = {'slug': ('title',)}
 
 admin.site.register(models.Link)
+admin.site.register(models.LinkGroup, LinkGroupAdmin)
 admin.site.register(models.Story, StoryAdmin)

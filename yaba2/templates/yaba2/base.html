@@ -47,13 +47,14 @@
     <div class="container-fluid">
       <div class="sidebar">
         <div class="well">
-          <h5>Sidebar</h5>
-          <ul>
-            {% for link in links %}
-                <li><a href="{{ link.url }}">{{ link.label }}</a></li>
+            {% for lg in link_groups %}
+                <h5>{{ lg }}</h5>
+                    <ul>
+                        {% for link in lg.link_set.all %}
+                            <li><a href="{{ link.url }}">{{ link.label }}</a></li>
+                        {% endfor %}
+                    </ul>
             {% endfor %}
-          </ul>
-
         </div>
       </div>
       <div class="content">

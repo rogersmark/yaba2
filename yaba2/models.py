@@ -13,11 +13,24 @@ class YabaBaseModel(models.Model):
     class Meta:
         abstract = True
 
+class LinkGroup(YabaBaseModel):
+    ''' Groupings for Links '''
+
+    title = models.CharField(max_length=64)
+    sort_order = models.IntegerField()
+
+    def __unicode__(self):
+        return u'%s' % self.title
+
+    class Meta:
+        ordering = ['sort_order']
+
 class Link(YabaBaseModel):
     ''' Links to other sites to put in the sidebar and what not '''
 
     label = models.CharField(max_length=100)
     url = models.CharField(max_length=256)
+    group = models.ForeignKey('LinkGroup')
     sort_order = models.IntegerField()
 
     def __unicode__(self):
